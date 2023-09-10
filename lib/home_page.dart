@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text(
           'Hello World',
-          style: TextStyle(fontFamily: 'ptsans', fontSize: 40),
+          style: TextStyle(fontFamily: 'Rubik', fontSize: 40),
         ),
       ),
     );
