@@ -13,8 +13,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Shopping App',
-      theme: ThemeData(fontFamily: 'Lato'),
-      home: HomePage(),
+      theme: ThemeData(
+          fontFamily: 'Lato',
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(189, 208, 25, 49),
+          ),
+          inputDecorationTheme: const InputDecorationTheme(
+            hintStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            prefixIconColor: Color.fromARGB(119, 119, 119, 1),
+          )),
+      home: const HomePage(),
     );
   }
 }
