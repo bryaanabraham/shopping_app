@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/global_variables.dart';
 import 'package:shopping_app/product_card.dart';
+import 'package:shopping_app/product_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,21 +45,17 @@ class _HomePageState extends State<HomePage> {
           children: [
             Column(
               children: [
-                const Row(
+                Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         'Shoes\nCollection',
-                        style: TextStyle(
-                          fontFamily: 'Lato',
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     //expanded takes the remaining space on the screen in the row or column
-                    Expanded(
+                    const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           hintText: 'Search',
@@ -118,10 +115,21 @@ class _HomePageState extends State<HomePage> {
                     itemCount: products.length,
                     itemBuilder: (context, index) {
                       final product = products[index];
-                      return ProductCard(
-                        title: product['title'] as String,
-                        price: product['Price'] as double,
-                        image: product['imageURL'] as String,
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetails(product: product);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductCard(
+                          title: product['title'] as String,
+                          price: product['Price'] as double,
+                          image: product['imageURL'] as String,
+                        ),
                       );
                     },
                   ),
