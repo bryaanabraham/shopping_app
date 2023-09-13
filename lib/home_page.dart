@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(
-                  height: 500,
+                  height: 627,
                   child: ListView.builder(
                     itemCount: products.length,
                     itemBuilder: (context, index) {
