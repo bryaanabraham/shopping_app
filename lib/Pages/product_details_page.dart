@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shopping_app/Providers/cart_provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, Object> product;
@@ -13,6 +15,38 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   int selectedSize = 0;
+  void pressed() {
+    if (selectedSize != 0) {
+      Provider.of<CartProvider>(context, listen: false).addProduct(
+        {
+          'title': widget.product['title'],
+          'Price': widget.product['Price'],
+          'size': selectedSize,
+          'id': widget.product['id'],
+          'imageURL': widget.product['imageURL'],
+          'company': widget.product['company'],
+        },
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Added to cart',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Please select a size',
+            style: TextStyle(fontSize: 18),
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +64,10 @@ class _ProductDetailsState extends State<ProductDetails> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const Spacer(),
-              Image.asset(widget.product['imageURL'] as String),
+              Image.asset(
+                widget.product['imageURL'] as String,
+                height: 250,
+              ),
               const Spacer(flex: 2),
               Container(
                 height: 200,
@@ -77,11 +114,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                     Padding(
                       padding: const EdgeInsets.all(15),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          pressed();
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               Theme.of(context).colorScheme.primary,
-                          minimumSize: const Size(double.infinity, 50),
+                          fixedSize: const Size(400, 50),
                         ),
                         child: const Text(
                           'Add to cart',

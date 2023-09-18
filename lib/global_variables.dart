@@ -40,14 +40,3 @@ final products = [
     'company': 'Under Armour',
   },
 ];
-
-final cart = [
-  {
-    'title': 'Under Armour Shoes',
-    'Price': 6999.0,
-    'size': 11,
-    'id': '4',
-    'imageURL': '',
-    'company': 'Under Armour',
-  }
-];

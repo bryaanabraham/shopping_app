@@ -14,12 +14,12 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         //colour must be inside decoration if colour is there, cannot be outside decoration.
-        color: Color.fromARGB(200, 153, 240, 235),
+        color: const Color.fromARGB(197, 228, 232, 232),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +36,7 @@ class ProductCard extends StatelessWidget {
           Center(
             child: Image(
               image: AssetImage(image),
-              height: 150,
+              height: 130,
             ),
           )
         ],
